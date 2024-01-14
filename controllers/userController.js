@@ -10,12 +10,14 @@ const createUser = async (req, res) => {
     res.status(200).json({ state: "exists" });
   } else {
     const [salt, hashPassword] = hashIt(password);
+    const token = signToken(email);
     const inserted = await userModel.create({
       name,
       email,
       password: hashPassword,
       salt,
     });
+    res.status(200).json({ state: "created", token });
     console.log(inserted);
   }
 };

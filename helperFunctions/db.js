@@ -5,7 +5,7 @@ async function connectDB() {
   mongoose
     .connect(process.env.DB_URI)
     .then((res) => {
-      console.log("connected to DB at string ", process.env.DB_URI);
+      console.log("connected to DB at string ");
     })
     .catch((err) => {
       console.log("Error");

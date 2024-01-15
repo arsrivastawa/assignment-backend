@@ -11,4 +11,10 @@ const getAllProducts = async (req, res) => {
   res.status(200).json({ mssg: "Success", result });
 };
 
-module.exports = { getAllProducts, createNewProducts };
+const searchProduct = async (req, res) => {
+  const { keyword } = req.body;
+  const result = await productModel.find({ name: { $regex: keyword } });
+  res.status(200).json({ result });
+};
+
+module.exports = { getAllProducts, createNewProducts, searchProduct };
